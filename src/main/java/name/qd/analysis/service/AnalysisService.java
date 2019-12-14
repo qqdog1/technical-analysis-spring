@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -26,8 +27,12 @@ public class AnalysisService {
 	private static Logger logger = LoggerFactory.getLogger(AnalysisService.class);
 	private ObjectMapper objectMapper = JsonUtils.getObjectMapper();
 	private DataSourceFactory dataSourceFactory = DataSourceFactory.getInstance();
-	private TechAnalyzerManager techAnalyzerManager = TechAnalyzerManager.getInstance();
 	private SimpleDateFormat sdf = TimeUtil.getDateFormat();
+	
+	@Autowired
+	private InstanceService instanceService;
+	
+	private TechAnalyzerManager techAnalyzerManager = instanceService.getTechAnalyzerManager();
 	
 	public String getAnalyzerList() {
 		return objectMapper.valueToTree(TechAnalyzers.values()).toString();
