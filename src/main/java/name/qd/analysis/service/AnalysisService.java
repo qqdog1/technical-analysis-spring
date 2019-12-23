@@ -45,7 +45,7 @@ public class AnalysisService {
 		try {
 			Date dateFrom = sdf.parse(from);
 			Date dateTo = sdf.parse(to);
-			DataSource dataSource = dataSourceFactory.getDataSource(exchange);
+			DataSource dataSource = dataSourceFactory.getDataSource(exchange, instanceService.getTWSEDataPath());
 			lst = techAnalyzerManager.getAnalysisResult(dataSource, techAnalyzer, product, dateFrom, dateTo);
 			
 		} catch (ParseException e) {

@@ -11,11 +11,17 @@ public class InstanceService {
 	
 	@Value("${file.cache.path}")
 	private String cachePath;
+	@Value("${twse.data.path}")
+	private String twseDataPath;
 	
 	public TechAnalyzerManager getTechAnalyzerManager() {
 		if(techAnalyzerManager == null) {
 			techAnalyzerManager = new TechAnalyzerManager(cachePath);
 		}
 		return techAnalyzerManager;
+	}
+	
+	public String getTWSEDataPath() {
+		return twseDataPath;
 	}
 }
