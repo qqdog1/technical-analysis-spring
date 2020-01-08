@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,8 @@ import name.qd.analysis.utils.JsonUtils;
 import name.qd.analysis.utils.TimeUtil;
 
 @Service
-public class AnalysisService {
-	private static Logger logger = LoggerFactory.getLogger(AnalysisService.class);
+public class TechAnalysisService {
+	private static Logger logger = LoggerFactory.getLogger(TechAnalysisService.class);
 	private ObjectMapper objectMapper = JsonUtils.getObjectMapper();
 	private DataSourceFactory dataSourceFactory = DataSourceFactory.getInstance();
 	private SimpleDateFormat sdf = TimeUtil.getDateFormat();
@@ -32,7 +34,12 @@ public class AnalysisService {
 	@Autowired
 	private InstanceService instanceService;
 	
-	private TechAnalyzerManager techAnalyzerManager = instanceService.getTechAnalyzerManager();
+	private TechAnalyzerManager techAnalyzerManager;
+	
+	@PostConstruct
+	private void init() {
+		techAnalyzerManager = instanceService.getTechAnalyzerManager();
+	}
 	
 	public String getAnalyzerList() {
 		return objectMapper.valueToTree(TechAnalyzers.values()).toString();
