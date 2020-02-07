@@ -22,14 +22,14 @@ import name.qd.analysis.tech.TechAnalyzers;
 import name.qd.analysis.tech.analyzer.TechAnalyzerManager;
 import name.qd.analysis.tech.vo.AnalysisResult;
 import name.qd.analysis.utils.JsonUtils;
-import name.qd.analysis.utils.TimeUtil;
+import name.qd.analysis.utils.TimeUtils;
 
 @Service
 public class TechAnalysisService {
 	private static Logger logger = LoggerFactory.getLogger(TechAnalysisService.class);
 	private ObjectMapper objectMapper = JsonUtils.getObjectMapper();
 	private DataSourceFactory dataSourceFactory = DataSourceFactory.getInstance();
-	private SimpleDateFormat sdf = TimeUtil.getDateFormat();
+	private SimpleDateFormat sdf = TimeUtils.getDateFormat();
 	
 	@Autowired
 	private InstanceService instanceService;

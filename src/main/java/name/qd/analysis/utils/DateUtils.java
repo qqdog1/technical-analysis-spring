@@ -46,7 +46,7 @@ public class DateUtils {
 			}
 			sortList(lstFolder);
 			
-			SimpleDateFormat sdf = TimeUtil.getDateFormat();
+			SimpleDateFormat sdf = TimeUtils.getDateFormat();
 			try {
 				lst.add(sdf.parse(lstFolder.get(days-1)));
 				lst.add(sdf.parse(lstFolder.get(0)));

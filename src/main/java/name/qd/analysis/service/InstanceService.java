@@ -15,17 +15,19 @@ public class InstanceService {
 	private String cachePath;
 	@Value("${twse.data.path}")
 	private String twseDataPath;
+	@Value("${write.cache.file}")
+	private boolean isWriteCacheToFile;
 	
 	public TechAnalyzerManager getTechAnalyzerManager() {
 		if(techAnalyzerManager == null) {
-			techAnalyzerManager = new TechAnalyzerManager(cachePath);
+			techAnalyzerManager = new TechAnalyzerManager(cachePath, isWriteCacheToFile);
 		}
 		return techAnalyzerManager;
 	}
 	
 	public ChipAnalyzerManager getChipAnalyzerManager() {
 		if(chipAnalyzerManager == null) {
-			chipAnalyzerManager = new ChipAnalyzerManager(cachePath);
+			chipAnalyzerManager = new ChipAnalyzerManager(cachePath, isWriteCacheToFile);
 		}
 		return chipAnalyzerManager;
 	}
